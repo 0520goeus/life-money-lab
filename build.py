@@ -153,6 +153,7 @@ def render_page(rel: str, title: str, desc: str, body: str, json_ld: dict | None
 <meta property="og:locale" content="ko_KR">
 <link rel="stylesheet" href="{SITE_URL}/style.css">
 {ld_html}
+<meta name="google-site-verification" content="E0MKLI_9g0wTNR9pjNKmxb_QGiA51AIK93dV9qBKumg"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8749404731911210" crossorigin="anonymous"></script><script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebSite","name":"생활비 물가 연구소","url":"https://0520goeus.github.io/life-money-lab/"}}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -170,7 +171,8 @@ def render_page(rel: str, title: str, desc: str, body: str, json_ld: dict | None
 <footer><div class="wrap">
   <p>매일 자동 업데이트 ({NOW.strftime("%Y-%m-%d %H:%M")} KST) · 데이터 출처: 한국소비자원 생필품 가격정보 / 한국전력공사 주택용 요금표</p>
   <p>패밀리 사이트: <a href="{PRICE_NOTE_URL}/">해뎐 가격노트</a> · <a href="{ELEC_CALC_URL}/">전기세 얼마</a> · <a href="https://0520goeus.github.io/vs-pick/">가성비 VS 비교 사전</a> · <a href="https://0520goeus.github.io/life-fee-calc/">가전용량·직구관세</a> · <a href="https://0520goeus.github.io/money-calc-kr/">연봉 실수령액</a> · <a href="https://0520goeus.github.io/benefit-calc-kr/">지원금·실업급여</a> · <a href="https://0520goeus.github.io/seller-margin-calc/">셀러 마진 계산기</a> · <a href="{BLOGGER_URL}/">생활해결 노트</a></p>
-</div></footer>
+</div><div style="margin:14px auto 8px;max-width:960px;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;font-size:12px;"><a href="https://0520goeus.github.io/house-calc-kr/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">부동산·대출·복비</a><a href="https://0520goeus.github.io/car-calc-kr/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">자동차세·유지비</a><a href="https://0520goeus.github.io/money-calc-kr/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">실수령액·금융</a><a href="https://0520goeus.github.io/benefit-calc-kr/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">2026 지원금</a><a href="https://0520goeus.github.io/life-fee-calc/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">평수가전·직구관세</a><a href="https://0520goeus.github.io/elec-calc/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">전기세 계산기</a><a href="https://0520goeus.github.io/vs-pick/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">가성비 VS 124종</a><a href="https://0520goeus.github.io/price-note/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">588 생필품 시세</a><a href="https://0520goeus.github.io/seller-margin-calc/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">셀러마진·엑셀</a><a href="https://0520goeus.github.io/kr-trend-brief/" style="padding:4px 9px;border-radius:6px;background:rgba(148,163,184,.18);color:inherit;text-decoration:none;">실시간 트렌드</a></div>
+</footer>
 </body></html>"""
     out_path = DIST / rel
     out_path.parent.mkdir(parents=True, exist_ok=True)
