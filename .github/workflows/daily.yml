@@ -1,0 +1,51 @@
+name: 생활비 물가 연구소 매일 자동 갱신·배포
+
+on:
+  schedule:
+    - cron: '0 22 * * *' # 매일 07:00 KST (가격노트 05:40 갱신 직후)
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 build.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: IndexNow Auto-Ping (Bing/Naver)
+        continue-on-error: true
+        run: |
+          python3 -c "
+          import json, urllib.request
+          urls = [u.strip() for u in open('dist/urls.txt', encoding='utf-8') if u.strip()]
+          key = 'a4d91f72c3084b5ea7f6d9218c340e12'
+          payload = json.dumps({'host': '0520goeus.github.io', 'key': key, 'keyLocation': 'https://0520goeus.github.io/life-money-lab/' + key + '.txt', 'urlList': urls}).encode()
+          for ep in ['https://api.indexnow.org/indexnow', 'https://searchadvisor.naver.com/indexnow']:
+              try:
+                  req = urllib.request.Request(ep, data=payload, headers={'Content-Type': 'application/json'})
+                  urllib.request.urlopen(req, timeout=10)
+              except Exception as e:
+                  print(ep, e)
+          "
