@@ -169,7 +169,7 @@ def render_page(rel: str, title: str, desc: str, body: str, json_ld: dict | None
 <main class="wrap">{body}</main>
 <footer><div class="wrap">
   <p>매일 자동 업데이트 ({NOW.strftime("%Y-%m-%d %H:%M")} KST) · 데이터 출처: 한국소비자원 생필품 가격정보 / 한국전력공사 주택용 요금표</p>
-  <p>패밀리 사이트: <a href="{PRICE_NOTE_URL}/">해뎐 가격노트 (588품목)</a> · <a href="{ELEC_CALC_URL}/">전기세 얼마 (24가전 계산기)</a> · <a href="{BLOGGER_URL}/">생활해결 노트</a></p>
+  <p>패밀리 사이트: <a href="{PRICE_NOTE_URL}/">해뎐 가격노트</a> · <a href="{ELEC_CALC_URL}/">전기세 얼마</a> · <a href="https://0520goeus.github.io/vs-pick/">가성비 VS 비교 사전</a> · <a href="https://0520goeus.github.io/life-fee-calc/">가전용량·직구관세</a> · <a href="https://0520goeus.github.io/money-calc-kr/">연봉 실수령액</a> · <a href="https://0520goeus.github.io/benefit-calc-kr/">지원금·실업급여</a> · <a href="https://0520goeus.github.io/seller-margin-calc/">셀러 마진 계산기</a> · <a href="{BLOGGER_URL}/">생활해결 노트</a></p>
 </div></footer>
 </body></html>"""
     out_path = DIST / rel
@@ -186,6 +186,7 @@ def main() -> None:
     (DIST / ".nojekyll").write_text("", encoding="utf-8")
     (DIST / GOOGLE_FILE).write_text(f"google-site-verification: {GOOGLE_FILE}", encoding="utf-8")
     (DIST / f"{INDEXNOW_KEY}.txt").write_text(INDEXNOW_KEY, encoding="utf-8")
+    (DIST / "ads.txt").write_text("google.com, pub-8749404731911210, DIRECT, f08c47fec0942fa0\n", encoding="utf-8")
 
     # Fetch live data from sibling GitHub repos (0원)
     meta = fetch_json("https://raw.githubusercontent.com/0520goeus/price-note/main/data/meta.json")
